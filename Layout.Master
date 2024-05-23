@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="SANPHAM.Layout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+   <title>Trái cây</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .footer {
+            background-color: #cccccc;
+            font-family: Arial;
+            border-top: 2px solid blue;
+        }
+
+        .footer p {
+            font-size: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 5px;
+
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+             <div class="container-fuild" style="background-color:beige">
+        <div class="row">
+            <div class="col-12">
+                <img src="/images/banner.png" style="height:480px; width:100%;" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="background:#32a5b7">
+                    <div class="container">
+                        <ul class="menu" style="display:flex; list-style:none; text-align:center; justify-content:center; align-items:center">
+                            <li class="m-3"><a style="text-decoration:none;color:rgb(235, 231, 231); list-style:none;" href="/Default.aspx"><i
+                                        style="color:antiquewhite" class="fa-solid fa-house fa-2x"></i></a></li>
+                          
+                            <li class="m-3" aria-orientation="vertical"><a style="text-decoration:none;color:rgb(225, 220, 220);" href="#" ><b>
+                                <asp:DataList ID="chude" runat="server" ItemStyle-VerticalAlign="NotSet" RepeatDirection="Horizontal" Font-Bold="True" Font-Size="Medium" ShowHeader="False">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="LinkButton1" runat="server" Text='<%# Eval("TENCHUDE") %>'  Font-Size="Smaller" ForeColor="White" style="margin-right: 20px; text-decoration:none;" CommandArgument='<%# Eval("MACHUDE") %>' OnClick="LinkButton1_Click" ></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:DataList></b></a></li>
+
+                           
+                           <%
+    if (Session["username"] != null && Session["username"].ToString().Equals("true", StringComparison.OrdinalIgnoreCase))
+    {%>
+    <li class="m-3"><a style="text-decoration:none;color:rgb(243, 234, 234);" href="/DangNhap.aspx"><b>Đăng nhập</b></a></li>
+    <li class="m-3"><a style="text-decoration:none;color:rgb(243, 234, 234);" href="/DangKy.aspx"><b>Đăng ký</b></a></li><%
+    }
+    else
+    {%>
+                              <li class="m-3"><a style="text-decoration:none;color:rgb(243, 234, 234);" href="/Giohang.aspx"><b>Giỏ hàng</b></a></li>
+                            <li class="m-3"><a style="text-decoration:none;color:rgb(243, 234, 234);" href="/DangXuat.aspx"><b>Đăng xuất</b></a></li>
+<%
+    }
+%>
+
+                            <li class="m-3"><asp:TextBox ID="txtTimKiem" runat="server" style="width: 200px;
+        height: 30px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;" placeholder="Tìm kiếm..."></asp:TextBox>
+    <asp:Button ID="btnTimKiem" runat="server" Text="Tìm kiếm" style="font-size: small; text-decoration: none; list-style-type: none; color: #000000;" OnClick="btnTimKiem_Click" CssClass="btn btn-primary" /></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row  mt-2">
+                <div class="col-12">
+                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div class="container-fuild">
+            <div class="footer">
+                <p>Địa chỉ: 120 Hoàng Minh Thảo, Phường Hòa Khánh Nam, Quận Liên Chiểu , Thành
+                    Phố Đà Nẵng</p>
+                <p>Trường Đại học DUY TÂN</p>
+
+            </div>
+        </div>
+
+    </div>
+        <div>
+          
+        </div>
+    </form>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
